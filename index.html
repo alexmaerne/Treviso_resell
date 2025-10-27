@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resell Treviso - Vestiti Nuovi a Prezzi Convenienti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #0a0e27;
+            --darker: #06080f;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --text-light: #e8e8e8;
+            --text-muted: #a0a0a0;
+            --accent: #1a1f3a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header e Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(6, 8, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(10, 14, 39, 0.5) 100%);
+            padding: 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--darker);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            animation: slideUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Chi Siamo */
+        #chi-siamo {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.3) 0%, rgba(212, 175, 55, 0.05) 100%);
+        }
+
+        .chi-siamo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .chi-siamo-text h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .chi-siamo-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .feature-icon {
+            color: var(--gold);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Cosa Facciamo */
+        #cosa-facciamo {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(26, 31, 58, 0.3) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(212, 175, 55, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .service-card h3 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Come Fare */
+        #come-fare {
+            background: linear-gradient(135deg, rgba(26, 31, 58, 0.3) 0%, rgba(212, 175, 55, 0.05) 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--darker);
+            z-index: 1;
+        }
+
+        .step:nth-child(1)::before {
+            content: '1';
+            font-size: 1.5rem;
+        }
+
+        .step:nth-child(2)::before {
+            content: '2';
+            font-size: 1.5rem;
+        }
+
+        .step:nth-child(3)::before {
+            content: '3';
+            font-size: 1.5rem;
+        }
+
+        .step h3 {
+            color: var(--text-light);
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contatti */
+        #contatti {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(26, 31, 58, 0.3) 100%);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            color: var(--gold);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .contact-item h4 {
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(6, 8, 15, 0.8);
+            border-top: 2px solid var(--gold);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+                border-bottom: 2px solid var(--gold);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .chi-siamo-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">RESELL TREVISO</div>
+            <ul>
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#cosa-facciamo">Cosa Facciamo</a></li>
+                <li><a href="#come-fare">Come Fare</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vestiti Nuovi a Prezzi Convenienti</h1>
+            <p>Consegna a mano in tutta Treviso e zone vicine. Pagamento in contanti al momento della consegna.</p>
+            <a href="#cosa-facciamo" class="cta-button">Scopri i Nostri Vestiti</a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo">
+        <h2>Chi Siamo</h2>
+        <p class="section-subtitle">Vestiario di qualità per tutta Treviso</p>
+        
+        <div class="chi-siamo-content">
+            <div class="chi-siamo-text">
+                <h3>Resell Treviso è:</h3>
+                <p>Un servizio di consegna vestiti nuovi direttamente a domicilio in tutta la provincia di Treviso. Offriamo abbigliamento di qualità a prezzi vantaggiosi con un servizio personale e affidabile.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Vestiti Nuovi</h4>
+                            <p>Solo abbigliamento nuovo di qualità</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Consegna a Mano</h4>
+                            <p>Consegna personale in tutta Treviso</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Pagamento Contanti</h4>
+                            <p>Paga comodamente al momento della consegna</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid rgba(212, 175, 55, 0.2); text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">👕</div>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Ampia selezione di vestiti per uomo, donna e bambino. Aggiorna il tuo guardaroba oggi stesso con i nostri prezzi convenienti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cosa Facciamo -->
+    <section id="cosa-facciamo">
+        <h2>Cosa Facciamo</h2>
+        <p class="section-subtitle">Il tuo negozio a domicilio</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛍️</div>
+                <h3>Selezione Curata</h3>
+                <p>Offriamo una vasta selezione di vestiti nuovi per ogni stagione e occasione, dalla casual all'elegante.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🚚</div>
+                <h3>Consegna Rapida</h3>
+                <p>Consegna a mano direttamente a casa tua in tutta Treviso e zone vicine. Niente sorprese, solo comodità.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💳</div>
+                <h3>Pagamento Facile</h3>
+                <p>Paga comodamente in contanti al momento della consegna. Nessun pagamento anticipato richiesto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Come Fare -->
+    <section id="come-fare">
+        <h2>Come Fare</h2>
+        <p class="section-subtitle">Tre semplici step per ordinare</p>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>Contattaci su Instagram</h3>
+                <p>Scrivici in DM su Instagram per vedere la disponibilità e ricevere foto dei vestiti che ti interessano.</p>
+            </div>
+            
+            <div class="step">
+                <h3>Scegli e Prenota</h3>
+                <p>Scegli i vestiti che preferisci e prenota indicandoci l'indirizzo di consegna e l'orario che preferisci.</p>
+            </div>
+            
+            <div class="step">
+                <h3>Ricevi a Casa</h3>
+                <p>Ricevi i tuoi vestiti a domicilio e paga in contanti al momento della consegna. Semplice e veloce!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti">
+        <h2>Contatti</h2>
+        <p class="section-subtitle">Raggiungi il tuo negozio preferito</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h4>Instagram</h4>
+                        <p>@resell_shop_treviso</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Seguici per le ultime novità e i nuovi arrivi</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <h4>Direct Message</h4>
+                        <p>Scrivi in DM su Instagram</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Per qualsiasi cosa scrivici in DM</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h4>Copertura</h4>
+                        <p>Tutta la provincia di Treviso</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Consegna a mano in zone limitrofe</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">💰</div>
+                    <div>
+                        <h4>Pagamento</h4>
+                        <p>Contanti al momento della consegna</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Nessun pagamento anticipato</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 31, 58, 0.3) 100%); padding: 2rem; border-radius: 12px; border: 2px solid rgba(212, 175, 55, 0.2); text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; min-height: 300px;">
+                <div style="font-size: 2.5rem;">👔</div>
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 1rem;">Pronti a Ordinare?</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Contattaci su Instagram per scoprire tutti i vestiti disponibili e fare il tuo ordine.</p>
+                    <a href="https://instagram.com/resell_shop_treviso" target="_blank" class="cta-button" style="display: inline-block;">Scrivi su Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Resell Treviso. Tutti i diritti riservati.</p>
+        <p>Vestiti Nuovi Consegnati a Mano in Tutta Treviso</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navUl = document.querySelector('nav ul');
+
+        mobileMenu.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .step, .feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
